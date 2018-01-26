@@ -34,7 +34,7 @@ function generateClips(inputFile, clips, cb){
     var clipNum = 0;
     async.mapSeries(clips, function(clip, itemCb){
         var clipFile = path.join(tmpDir, "clip" + clipNum + ".mp4");
-        console.log("Generating " + clipFile);
+        console.log("Generating " + clip.from + " to " + clip.to);
         clipNum++;
         outputClip(inputFile, clipFile, clip.from, clip.to, function(){
             itemCb(null, clipFile);

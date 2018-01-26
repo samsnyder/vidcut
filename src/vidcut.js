@@ -8,15 +8,19 @@ function loadInput(filePath){
     return yaml.safeLoad(fs.readFileSync(filePath, 'utf8'));
 }
 
-var inputFile = "data/video.yaml";
-var outputFile = "out/output.mp4";
+if(process.argv.length != 4){
+    console.log("Usage: vidcut <input_yaml> <output_video>");
+    process.exit(1);
+}
+
+var inputFile = process.argv[2];
+var outputFile = process.argv[3];
 var inputDir = path.dirname(inputFile);
 
 var input = loadInput(inputFile);
 var inputVideo = path.join(inputDir, input.input);
 
 audio.findBestCuts(inputVideo, input.clips, function(err, clips){
-    console.log(clips);
     video.makeVideo(inputVideo, outputFile, clips, function(){
         console.log("Saved to " + outputFile);
     });
