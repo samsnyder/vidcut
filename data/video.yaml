@@ -1,0 +1,6 @@
+input: input.mp4
+clips:
+- from: 20.500
+  to: 28
+- from: 1:10.5
+  to: 1:15.1
