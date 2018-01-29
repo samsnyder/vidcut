@@ -45,9 +45,10 @@ function generateClips(inputFile, clips, cb){
 function makeVideo(inputFile, outputFile, clips, cb){
     generateClips(inputFile, clips, function(err, clipFiles){
         if(err){
-            return cb(err);
+            cb(err);
+        }else{
+            mergeClips(clipFiles, outputFile, cb);
         }
-        mergeClips(clipFiles, outputFile, cb);
     });
 }
 
